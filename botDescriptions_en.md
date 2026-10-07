@@ -299,16 +299,11 @@ Prospect selected tile.
 
 ## pv - PavingBot
 
-Provides one-shot paving and catseye commands plus a bounded catseye line mode. It does not retry failed actions.
+Sends one paving action only when explicitly commanded. It has no automatic action or retry loop.
 
-Select one paving material in an inventory before using `pave` or `corner`. The `catseye` command uses a selected catseye, or finds one in the opened player inventory.
+Select one paving material in the player inventory before using `pave` or `corner`.
 
 ### Commands
 
 1) pave [under|front] - Send one Pave action to the tile under or in front of the player.
 2) corner [under|front] [nw|ne|sw|se] - Send one Pave corner action. The corner names are fixed world directions.
-3) catseye - Drop one catseye, wait for that exact item to appear on the ground, then send the configured server-specific Move > Place action. It times out after 30 seconds and never retries either action.
-4) catseye move - Send Move > Place once to an already dropped catseye under the mouse pointer.
-5) line [tile_count] - Face the nearest cardinal direction, drop one catseye at the player's exact position, move it to the nearest corner, wait for confirmation, and then move forward one tile while preserving the same within-tile offset. Repeat for exactly the requested number of tiles. Stops on the first failure.
-6) line stop - Stop the line after the current in-progress action. It does not send another placement or movement.
-7) action [action_id] - Show or change the Move > Place action ID. The default is 1698. A changed value lasts until this bot is stopped or the client exits.
